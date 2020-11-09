@@ -1,0 +1,75 @@
+.app-login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding: 1rem; */
+    width: 20rem;
+    max-width: 80%;
+    height: calc(100vh - 4rem);
+    /* flex: 1; */
+    margin: 0 auto;
+}
+.login-welcome-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid #7336f7;
+    border-radius: 5px;
+}
+.welcome-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+.hello-msg {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.login-img {
+    width: 30px;
+    height: 30px;
+}
+.welcome-msg {
+    font-size: 1.2rem;
+}
+.signin-msg {
+    font-size: 0.7rem;
+    color: lightslategray;
+}
+.login-btn {
+    background: #7336f7;
+    color: white;
+    max-width: 85%;
+    border-radius: 3px;
+    border: 0;
+    padding: 7px 0;
+    width: 12.5rem;
+    margin-top: 40px;
+}
+.tel-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-label {
+    font-size: 0.7rem;
+    margin-top: 2px;
+    color: lightslategray;
+}
+#phone_no {
+    width: 12rem;
+    max-width: 85%;
+    padding: 3px;
+    border-radius: 1px;
+    border: 1px solid #7336f7;
+}
+
+#phone_no:focus {
+    outline: 1px solid #7336f7;
+}

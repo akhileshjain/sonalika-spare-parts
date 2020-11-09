@@ -1,0 +1,25 @@
+.item-details-popup-line-box {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.item-details-popup-inputs {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #7336f7;
+    outline: 0;
+    width: 5rem;
+    text-align: center;
+}
+.item-details-popup-buttons {
+    width: 5.5rem;
+    background-color: #7336f7;
+    color: white;
+    border-radius: 3px;
+    border: 0;
+    padding: 7px 0;
+    cursor: pointer;
+}

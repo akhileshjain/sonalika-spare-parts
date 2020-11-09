@@ -1,0 +1,37 @@
+.app-verification-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding: 1rem; */
+    width: 20rem;
+    max-width: 80%;
+    height: calc(100vh - 4rem);
+    /* flex: 1; */
+    margin: 0 auto;
+}
+.action-buttons {
+    display: flex;
+    flex:1;
+    margin-top: 24px;
+}
+.action-button {
+    background: #7336f7;
+    margin-right: 3px;
+    color: white;
+    max-width: 85%;
+    flex:1;
+    border-radius: 3px;
+    border: 0;
+    padding: 7px 0;
+    cursor: pointer;
+}
+#otp-value {
+    text-align: center;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #7336f7;
+}
+#otp-value:focus {
+    outline: 1px solid #7336f7;
+}
