@@ -3,13 +3,12 @@ import './Item.css';
 
 class Item extends Component {
 
-    onItemClicked = rate => {
-        console.log(rate);
-        this.props.onSelectItem(rate);
+    onItemClicked = props => {
+        this.props.onSelectItem(props);
     }
     render() {
         return (
-            <div className="parts-box" onClick={this.onItemClicked.bind(this, this.props.rate)}>
+            <div className="parts-box" onClick={this.onItemClicked.bind(this, this.props)}>
                 <div className="parts-desc-box">
                     <div className="parts-name">{this.props.title}</div>
                     <div className="parts-desc">{this.props.title}</div>

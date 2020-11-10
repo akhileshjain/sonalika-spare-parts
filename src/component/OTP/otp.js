@@ -8,8 +8,7 @@ const [enteredOtp, setEnteredOtp] = useState('');
 
 const onOTPVerify = (event) => {
     event.preventDefault();
-    let url = 'https://jsonplaceholder.typicode.com/posts&' + props.phone + '&' + enteredOtp;
-    console.log(url);
+    // let url = 'https://jsonplaceholder.typicode.com/posts&' + props.phone + '&' + enteredOtp;
     fetch('https://jsonplaceholder.typicode.com/posts')
     .then(res => {
         return res.json();

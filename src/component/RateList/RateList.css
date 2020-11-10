@@ -1,0 +1,6 @@
+.ratelist-form {
+    display: flex;
+}
+.ratelist-form-search-input {
+    flex: 1;
+}

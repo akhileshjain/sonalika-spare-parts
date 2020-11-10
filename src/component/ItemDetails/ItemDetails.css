@@ -5,6 +5,20 @@
     align-items: center;
     padding-bottom: 10px;
 }
+.item-details-checkout-box {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;    
+}
+.item-details-popup-button-box {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
 .item-details-popup-inputs {
     border-top: 0;
     border-left: 0;
@@ -20,6 +34,13 @@
     color: white;
     border-radius: 3px;
     border: 0;
-    padding: 7px 0;
+    padding: 7px;
+    margin-right: 10px;
     cursor: pointer;
+}
+.item-details-box-title{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    font-weight: bold;
 }

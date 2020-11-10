@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  Item  from '../Item/Item';
+import './RateList.css';
 import Modal from '../UI/Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
 
@@ -8,7 +9,9 @@ class RateList extends Component {
         super(props);
             this.state = {
                 itemsList: null,
-                selectedItemRate: ''
+                selectedItemRate: null,
+                title: '',
+                show: false
             }
     }
     componentDidMount() {
@@ -19,8 +22,11 @@ class RateList extends Component {
             this.setState({itemsList: responseData});
         });
     }
-    itemSelectedHandler = (selectedItemRate) => {
-        this.setState({selectedItemRate: selectedItemRate});
+    itemSelectedHandler = (selectedItem) => {
+        this.setState({selectedItemRate: selectedItem.id, title: selectedItem.title, show: true});
+    }
+    orderCancelledHandler = () => {
+        this.setState({show: false});
     }
     render() {
         if (!this.state.itemsList){
@@ -29,16 +35,18 @@ class RateList extends Component {
         return (
             <div className="items-box">
                 <div>
-                    <Modal>
-                        <ItemDetails rate={this.state.selectedItemRate}></ItemDetails>
-                    </Modal>
-                    <form>
-                        <input></input>
+                    {this.state.show ? 
+                    <Modal show={this.state.show} modalClosed={this.orderCancelledHandler}>
+                        <ItemDetails title={this.state.title} rate={this.state.selectedItemRate}></ItemDetails>
+                    </Modal> 
+                    : null}
+                    <form className="ratelist-form">
+                        <input className="ratelist-form-search-input"></input>
                         <button>Search</button>
                     </form>
                 </div>
                 {this.state.itemsList.map(item => {
-                return <Item onSelectItem={() => this.itemSelectedHandler(item.id)} 
+                return <Item onSelectItem={() => this.itemSelectedHandler(item)} 
                         key={item.id} 
                         title={item.title} 
                         desc={item.body} 
