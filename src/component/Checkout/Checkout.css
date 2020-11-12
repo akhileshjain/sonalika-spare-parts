@@ -1,0 +1,23 @@
+.checkout-header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+.checkout-item-col {
+    width: 40%;
+    text-align: center;
+}
+.checkout-item-rate-col {
+    width: 20%;
+    text-align: center;
+}
+.checkout-qty-col {
+    width: 20%;
+    text-align: center;
+}
+.checkout-amount-col {
+    width: 20%;
+    text-align: center;
+}

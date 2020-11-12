@@ -1,31 +1,39 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-
+import { Page, Text, View, Document, Note, ReactPDF } from '@react-pdf/renderer';
+import {connect} from 'react-redux';
+import './PDF.css'
 // Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4'
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  }
-});
 
 // Create Document Component
-const MyDocument = () => (
+const MyDocument = (props) => (
   <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Section #1</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
+    <Page size="A4" orientation="portrait" className="page">
+      <Note>H3llo</Note>
+      <View className="rateslip-container">
+      <div className="checkout-header">
+          <div className="checkout-item-col">Item</div>
+          <div className="checkout-item-rate-col">Item Rate</div>
+          <div className="checkout-qty-col">Quantity</div>
+          <div className="checkout-amount-col">Amount</div>
+        </div>
+        {props.cart.map(item => {
+              return (<View className="rateslip">
+                      <Text className="checkout-item-col">{item.name}</Text>
+                      <Text className="checkout-item-rate-col">{item.rate}</Text>
+                      <Text className="checkout-qty-col">{item.qty}</Text>
+                      <Text className="checkout-amount-col">{item.rate * item.qty}</Text>
+                      </View>
+                    )
+            })}
       </View>
     </Page>
   </Document>
 );
 
-export default MyDocument;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    cart : state.cart
+  }
+}
+export default connect(mapStateToProps)(MyDocument);

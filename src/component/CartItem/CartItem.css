@@ -1,0 +1,7 @@
+.cart-item-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
