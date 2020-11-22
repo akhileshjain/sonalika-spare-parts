@@ -6,10 +6,11 @@ import Login from './component/Login/Login';
 import OTP from './component/OTP/otp';
 import RateList from './component/RateList/RateList';
 import Checkout from './component/Checkout/Checkout';
-import MyDocument from './component/PDF/PDF';
+// import MyDocument from './component/PDF/PDF';
 import './App.css';
 
 const App = () => {
+  alert(navigator)
   return (
     <BrowserRouter>
         <div className="App">

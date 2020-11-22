@@ -1,21 +1,39 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import CartItem from '../CartItem/CartItem';
+import CartItemPdf from '../CartItem-PDF/CartItem-PDF';
 import './Checkout.css';
-import MyDocument from '../PDF/PDF';
-import ReactPDF from '@react-pdf/renderer';
-import {PDFDownloadLink} from '@react-pdf/renderer';  
+import { jsPDF } from "jspdf";
+import 'jspdf-autotable';
 class Checkout extends Component {
   downloadPDF = () => {
-    console.log("hello");
+    const doc = new jsPDF({includeHiddenHtml: true});
+    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.text("Sonalika Spare Parts - Invoice", 80, 10);
+    doc.autoTable({ html: '.tbl1', theme:'grid' });    
+    doc.save("a4.pdf");
+
   }
   render() {
     return(
-      <div>
-
+      <div className="print-cart">
         <div>
           <button onClick={() => this.downloadPDF()}>Share</button>
         </div>
+        <table className="tbl1">
+            <thead>
+              <tr>
+                <th>Item</th><th>Item Rate</th><th>Quantity</th><th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.cart.map(item => {
+              return <CartItemPdf name={item.name} 
+                      rate={item.rate} qty={item.qty}>
+                    </CartItemPdf>
+            })}
+            </tbody>
+        </table>
         <div className="checkout-header">
           <div className="checkout-item-col">Item</div>
           <div className="checkout-item-rate-col">Item Rate</div>
