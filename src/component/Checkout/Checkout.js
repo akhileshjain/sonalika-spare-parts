@@ -17,9 +17,6 @@ class Checkout extends Component {
   render() {
     return(
       <div className="print-cart">
-        <div>
-          <button onClick={() => this.downloadPDF()}>Share</button>
-        </div>
         <table className="tbl1">
             <thead>
               <tr>
@@ -45,6 +42,9 @@ class Checkout extends Component {
                     rate={item.rate} qty={item.qty}>
                   </CartItem>
           })}
+        <div className="pdfShareBtn">
+          <button onClick={() => this.downloadPDF()}>Download PDF</button>
+        </div>
       </div>
     )
   }
