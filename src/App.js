@@ -13,7 +13,6 @@ const App = () => {
     <BrowserRouter>
         <div className="App">
           <Header/>
-          {/* <MyDocument/>           */}
           <Route path="/" exact component={Login}/>
           <Route path="/otp" exact component={OTP}/>
           <Route path='/rateList' exact component={RateList}/>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import './ItemDetails.css';
+import Modal from '../UI/Modal/Modal';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
@@ -11,6 +12,10 @@ class ItemDetails extends Component {
     };
     qtyChangedHandler = (event) => {
         this.setState({qty: event.target.value});
+    }
+    closeModalDialog = (e) => {
+        e.preventDefault();
+        
     }
     render() {
         return(
@@ -34,17 +39,19 @@ class ItemDetails extends Component {
                         value={this.props.rate * this.state.qty}
                         />
                     </div>
-                    <div className="item-details-popup-line-box">
+                    {/* <div className="item-details-popup-line-box">
                         <label>Net Order Amount</label>
                         <input disabled className="item-details-popup-inputs"/>
-                    </div>
+                    </div> */}
                     <div className="item-details-popup-button-box">
                         <button type="submit" className="item-details-popup-buttons">ADD</button>
-                        <button className="item-details-popup-buttons">CANCEL</button>
+                        <button className="item-details-popup-buttons" 
+                        onClick={(event) => this.closeModalDialog(event)}>CANCEL</button>
                     </div>
                 </form>
                      <div className="item-details-checkout-box">
-                         <button className="item-details-popup-buttons" onClick={(props) => this.props.onCartCheckout(this.props)}>CHECKOUT</button>
+                         <button className="item-details-popup-buttons" 
+                         onClick={(props) => this.props.onCartCheckout(this.props)}>CHECKOUT</button>
                      </div>
             </div>
         );
@@ -61,8 +68,7 @@ const mapDispatchToProps = dispatch => {
             event.preventDefault();
             let addedItem = {"rate": props.rate, "qty": event.target[1].value, "name": props.title};
             console.log(addedItem);
-            dispatch(actionTypes.AddItemToCart(addedItem));
-            
+            dispatch(actionTypes.AddItemToCart(addedItem));           
         },
         onCartCheckout: (props) => {
             props.history.push('/checkout');

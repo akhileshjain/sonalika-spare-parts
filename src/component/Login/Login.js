@@ -18,7 +18,7 @@ const Login = (props) => {
             </div>
         <form onSubmit={(event) => props.onEnterPhoneNo(event, enteredPhoneNo, props)}>
             <div className="tel-input">
-                <input required type="tel"
+                <input required type="tel" aria-label="Mobile Number"
                     id="phone_no" placeholder="Enter your mobile number"
                     pattern="[0-9]{10}"
                     value={enteredPhoneNo}

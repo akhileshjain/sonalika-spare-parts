@@ -16,7 +16,7 @@ class Checkout extends Component {
     // var element = document.getElementById('pdfData');
     // element.href = "/pdf.html#" + pdfData;
     // element.target = "xxx";
-    doc.save("a4.pdf");
+    doc.save("Invoice.pdf");
     var file = new File(["foo"], "foo.txt", {
       type: "text/plain",
     });
