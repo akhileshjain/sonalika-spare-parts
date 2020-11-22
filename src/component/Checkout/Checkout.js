@@ -15,6 +15,7 @@ class Checkout extends Component {
 
   }
   render() {
+    alert(navigator.canShare);
     return(
       <div className="print-cart">
         <table className="tbl1">

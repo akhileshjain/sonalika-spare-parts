@@ -10,7 +10,6 @@ import Checkout from './component/Checkout/Checkout';
 import './App.css';
 
 const App = () => {
-  alert(navigator)
   return (
     <BrowserRouter>
         <div className="App">
