@@ -11,7 +11,8 @@ class RateList extends Component {
                 itemsList: null,
                 selectedItemRate: null,
                 title: '',
-                show: false
+                show: false,
+                searchTerm: ''
             }
     }
     componentDidMount() {
@@ -19,7 +20,7 @@ class RateList extends Component {
         .then(res => {
             return res.json();
         }).then(responseData => {
-            this.setState({itemsList: responseData});
+            this.setState({itemsList: responseData, itemListClone: responseData});
         });
     }
     itemSelectedHandler = (selectedItem) => {
@@ -27,6 +28,10 @@ class RateList extends Component {
     }
     orderCancelledHandler = () => {
         this.setState({show: false});
+    }
+    dynamicSearch = (e, event) => {
+        let filteredData = e.state.itemListClone.filter(i => i.title.toLowerCase().includes(event.target.value.toLowerCase()));
+        this.setState({itemsList: filteredData});
     }
     render() {
         if (!this.state.itemsList){
@@ -41,8 +46,8 @@ class RateList extends Component {
                     </Modal> 
                     : null}
                     <form className="ratelist-form">
-                        <input className="ratelist-form-search-input"></input>
-                        <button>Search</button>
+                        <input onChange={(event) => this.dynamicSearch(this, event)} className="ratelist-form-search-input"></input>
+                        <button >Search</button>
                     </form>
                 </div>
                 {this.state.itemsList.map(item => {

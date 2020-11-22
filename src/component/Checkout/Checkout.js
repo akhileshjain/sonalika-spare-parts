@@ -11,11 +11,27 @@ class Checkout extends Component {
     doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
     doc.text("Sonalika Spare Parts - Invoice", 80, 10);
     doc.autoTable({ html: '.tbl1', theme:'grid' });    
+    // var file = doc.output('blob');
+    // var pdfData = doc.output('datauristring');
+    // var element = document.getElementById('pdfData');
+    // element.href = "/pdf.html#" + pdfData;
+    // element.target = "xxx";
     doc.save("a4.pdf");
-
+    var file = new File(["foo"], "foo.txt", {
+      type: "text/plain",
+    });
+    const fArray = [file];
+    if (navigator.canShare && navigator.canShare({ files: fArray })) {
+      navigator.share({
+        title: 'Sonalika Spare Parts',
+        text: 'Invoice',
+        files: fArray
+        // url: element.href
+      })
+    }
   }
   render() {
-    alert(navigator.canShare);
+    // alert(navigator.canShare);
     return(
       <div className="print-cart">
         <table className="tbl1">
@@ -46,6 +62,9 @@ class Checkout extends Component {
         <div className="pdfShareBtn">
           <button onClick={() => this.downloadPDF()}>Download PDF</button>
         </div>
+        {/* <a class="btn btn-default" id="pdfData" ref="/pdf.html" target="xxx">
+        Download PDF2
+        </a> */}
       </div>
     )
   }
