@@ -39,15 +39,15 @@ class RateList extends Component {
         }    
         return (
             <div className="items-box">
-                <div>
+                <div className="searchbar-box">
                     {this.state.show ? 
                     <Modal show={this.state.show} modalClosed={this.orderCancelledHandler}>
-                        <ItemDetails title={this.state.title} rate={this.state.selectedItemRate}></ItemDetails>
+                        <ItemDetails onCloseDialog={() => this.orderCancelledHandler()} title={this.state.title} rate={this.state.selectedItemRate}></ItemDetails>
                     </Modal> 
                     : null}
                     <form className="ratelist-form">
-                        <input onChange={(event) => this.dynamicSearch(this, event)} className="ratelist-form-search-input"></input>
-                        <button >Search</button>
+                        <input placeholder="Enter the search term here..." onChange={(event) => this.dynamicSearch(this, event)} className="ratelist-form-search-input"></input>
+                       
                     </form>
                 </div>
                 {this.state.itemsList.map(item => {

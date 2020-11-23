@@ -1,6 +1,10 @@
 .ratelist-form {
-    display: flex;
+    text-align: center;
 }
 .ratelist-form-search-input {
-    flex: 1;
+    margin: 10px 0;
+    width: 240px;
+    border-radius: 8px;
+    outline: 0;
+    padding: 2px 4px;
 }

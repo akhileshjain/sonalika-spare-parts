@@ -15,7 +15,7 @@ class ItemDetails extends Component {
     }
     closeModalDialog = (e) => {
         e.preventDefault();
-        
+        this.props.onCloseDialog();
     }
     render() {
         return(
@@ -36,7 +36,7 @@ class ItemDetails extends Component {
                     <div className="item-details-popup-line-box">
                         <label>Item Order Amount</label>
                         <input disabled className="item-details-popup-inputs"
-                        value={this.props.rate * this.state.qty}
+                        value={'Rs.'+ this.props.rate * this.state.qty}
                         />
                     </div>
                     {/* <div className="item-details-popup-line-box">
@@ -67,8 +67,8 @@ const mapDispatchToProps = dispatch => {
         onAddToCart: (event, props) => {
             event.preventDefault();
             let addedItem = {"rate": props.rate, "qty": event.target[1].value, "name": props.title};
-            console.log(addedItem);
-            dispatch(actionTypes.AddItemToCart(addedItem));           
+            dispatch(actionTypes.AddItemToCart(addedItem));         
+            props.onCloseDialog();  
         },
         onCartCheckout: (props) => {
             props.history.push('/checkout');

@@ -2,24 +2,30 @@
     width: 100vw;
     overflow-x: hidden;
 }
+.searchbar-box {
+    justify-content: center;
+}
 .parts-box {
     display: flex;
     background: white;
     color: black;
-    border-bottom: 1px solid #cccc;
+    border: 1px solid #cccc;
     width: inherit;
     cursor: pointer;
 }
 .parts-box:hover {
     background: lightgray;
 }
+/* .items-box>div:nth-of-type(even) {
+    background: #fefe;
+} */
 .parts-box:active {
     background: lightblue;
 }
 .parts-desc-box {
     display: flex;
     padding: 10px;
-    width: 75%;
+    width: 70%;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -30,7 +36,7 @@
     align-items: center;
     justify-content: flex-end;
     color: red;
-    padding: 10px;
+    padding: 10px 0;
 }
 .parts-name {
     font-weight: bold;
