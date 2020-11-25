@@ -51,7 +51,7 @@ class ItemDetails extends Component {
                 </form>
                      <div className="item-details-checkout-box">
                          <button className="item-details-popup-buttons" 
-                         onClick={(props) => this.props.onCartCheckout(this.props)}>CHECKOUT</button>
+                         onClick={(event) => this.props.onCartCheckout(event, this.props)}>CHECKOUT</button>
                      </div>
             </div>
         );
@@ -70,7 +70,12 @@ const mapDispatchToProps = dispatch => {
             dispatch(actionTypes.AddItemToCart(addedItem));         
             props.onCloseDialog();  
         },
-        onCartCheckout: (props) => {
+        onCartCheckout: (event, props) => {
+            event.preventDefault();
+            debugger;
+            let addedItem = {"rate": props.rate, "qty": document.getElementsByClassName('item-details-popup-inputs')[1].value, "name": props.title};
+            dispatch(actionTypes.AddItemToCart(addedItem));         
+            props.onCloseDialog();  
             props.history.push('/checkout');
         }
     }
