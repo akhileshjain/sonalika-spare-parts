@@ -72,7 +72,6 @@ const mapDispatchToProps = dispatch => {
         },
         onCartCheckout: (event, props) => {
             event.preventDefault();
-            debugger;
             let addedItem = {"rate": props.rate, "qty": document.getElementsByClassName('item-details-popup-inputs')[1].value, "name": props.title};
             dispatch(actionTypes.AddItemToCart(addedItem));         
             props.onCloseDialog();  

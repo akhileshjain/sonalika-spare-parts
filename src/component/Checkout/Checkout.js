@@ -6,16 +6,19 @@ import './Checkout.css';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
 class Checkout extends Component {
-  downloadPDF = () => {
+  downloadPDF = (netAmount) => {
     const doc = new jsPDF({includeHiddenHtml: true});
     doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
-    doc.text("Sonalika Spare Parts - Invoice", 80, 10);
+    doc.text("Sonalika Spare Parts - Invoice", 70, 10);
     doc.autoTable({ html: '.tbl1', theme:'grid' });    
     // var file = doc.output('blob');
     // var pdfData = doc.output('datauristring');
     // var element = document.getElementById('pdfData');
     // element.href = "/pdf.html#" + pdfData;
     // element.target = "xxx";
+    let finalY = doc.previousAutoTable.finalY; //this gives you the value of the end-y-axis-position of the previous autotable.
+    doc.setFontSize(12);
+    doc.text("Net Amount Rs." + netAmount, 15, finalY + 10); 
     doc.save("Invoice.pdf");
     var file = new File(["foo"], "foo.txt", {
       type: "text/plain",
@@ -32,6 +35,7 @@ class Checkout extends Component {
   }
   render() {
     // alert(navigator.canShare);
+    let netAmount = 0;
     return(
       <div className="print-cart">
         <table className="tbl1">
@@ -55,15 +59,19 @@ class Checkout extends Component {
           <div className="checkout-amount-col">Amount</div>
         </div>
         {this.props.cart.map(item => {
+            netAmount += item.rate * item.qty;
             return <CartItem name={item.name} 
                     rate={item.rate} qty={item.qty}>
                   </CartItem>
           })}
+          <div className="net-amount-box"><span>Total amount: Rs.</span>
+              <span>{netAmount}</span>
+          </div>
         <div className="pdfShareBtn">
-          <button onClick={() => this.downloadPDF()}>Download PDF</button>
+          <button onClick={() => this.downloadPDF(netAmount)}>Download PDF</button>
         </div>
         {/* <a class="btn btn-default" id="pdfData" ref="/pdf.html" target="xxx">
-        Download PDF2
+        Download PDF2 
         </a> */}
       </div>
     )
