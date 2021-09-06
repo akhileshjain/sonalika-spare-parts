@@ -8,3 +8,10 @@
     outline: 0;
     padding: 2px 4px;
 }
+.parts-header{
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    padding: 5px;
+    border: 2px solid black;
+}

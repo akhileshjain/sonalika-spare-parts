@@ -19,12 +19,32 @@ export const AddItemToCart = (addedItem) => {
 
 export const saveNumber = (phoneNumber) => {
     return dispatch => {
-        // let url = 'https://jsonplaceholder.typicode.com/posts&' + phoneNumber;
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(res => {
+        let url = 'https://web.accountsdeck.com/supplier/otp?mobileNo=' + phoneNumber;
+        // let url = 'https://web.accountsdeck.com/ws/acc_stmt?from=01/04/2020&to=31/03/2022&led=13722';
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("API_TOKEN", "WTBW7FSRNIJEHSXCA11ZR");
+        // myHeaders.append("Accept", "application/json");
+        // myHeaders.append("Access-Control-Allow-Origin", "*");
+
+        var requestOptions = {
+            method: 'POST',
+            // 'mode': 'no-cors',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+        //   fetch(url, requestOptions)
+        //   .then(response => response.text())
+        //   .then(result => console.log(result))
+        //   .catch(error => console.log('error', error));
+
+        fetch(url, requestOptions).then(res => {
                 return res.json();
             }).then(responseData => {
                 dispatch(storeNumber(phoneNumber));
+            }).catch(err => {
+                debugger;
+                console.log(err);
             });
     }
 };

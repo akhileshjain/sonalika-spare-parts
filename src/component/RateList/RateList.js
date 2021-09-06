@@ -16,21 +16,32 @@ class RateList extends Component {
             }
     }
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("API_TOKEN", "WTBW7FSRNIJEHSXCA11ZR");
+
+        var requestOptions = {
+            method: 'POST',
+            // 'mode': 'no-cors',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+        fetch('https://web.accountsdeck.com/ws/itemList', requestOptions)
         .then(res => {
             return res.json();
         }).then(responseData => {
+            console.log(responseData);
             this.setState({itemsList: responseData, itemListClone: responseData});
         });
     }
     itemSelectedHandler = (selectedItem) => {
-        this.setState({selectedItemRate: selectedItem.id, title: selectedItem.title, show: true});
+        this.setState({selectedItemRate: selectedItem.tranRate, title: selectedItem.iName, show: true});
     }
     orderCancelledHandler = () => {
         this.setState({show: false});
     }
     dynamicSearch = (e, event) => {
-        let filteredData = e.state.itemListClone.filter(i => i.title.toLowerCase().includes(event.target.value.toLowerCase()));
+        let filteredData = e.state.itemListClone.filter(i => i.iName.toLowerCase().includes(event.target.value.toLowerCase()));
         this.setState({itemsList: filteredData});
     }
     render() {
@@ -50,12 +61,17 @@ class RateList extends Component {
                        
                     </form>
                 </div>
+                <div class="parts-header">
+                    <div>Part Details</div>
+                    <div>Price (In Rs.)</div>
+                </div>
                 {this.state.itemsList.map(item => {
                 return <Item onSelectItem={() => this.itemSelectedHandler(item)} 
-                        key={item.id} 
-                        title={item.title} 
-                        desc={item.body} 
-                        rate={item.id}></Item>
+                        key={item.itemId} 
+                        title={item.iName} 
+                        desc={item.iDesc} 
+                        location={item.comment}
+                        rate={item.tranRate}></Item>
                 })}
             </div>
         );

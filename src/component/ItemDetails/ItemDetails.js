@@ -30,7 +30,7 @@ class ItemDetails extends Component {
                     <div className="item-details-popup-line-box">
                         <label>Quantity</label>
                         <input className="item-details-popup-inputs"
-                        value={this.state.qty} type="number"
+                        value={this.state.qty} type="number" min="0"
                         onChange={(event) => this.qtyChangedHandler(event)}/>
                     </div>
                     <div className="item-details-popup-line-box">
