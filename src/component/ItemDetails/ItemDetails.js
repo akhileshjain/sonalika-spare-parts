@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import './ItemDetails.css';
-import Modal from '../UI/Modal/Modal';
+// import Modal from '../UI/Modal/Modal';
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
