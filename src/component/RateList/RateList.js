@@ -5,6 +5,7 @@ import Modal from '../UI/Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import ReactPaginate from 'react-paginate';
 
+
 class RateList extends Component {
     constructor(props) {
         super(props);
@@ -24,11 +25,11 @@ class RateList extends Component {
 
         var requestOptions = {
             method: 'POST',
-            // mode: 'no-cors',
             headers: myHeaders,
             redirect: 'follow'
           };
-        fetch(`https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=10`) //, requestOptions
+
+        fetch(`https://web.accountsdeck.com/ws/itemList_off?page=${currentPage}&offset=10`, requestOptions)
         .then(res => {
             return res.json();
         }).then(responseData => {
@@ -43,17 +44,16 @@ class RateList extends Component {
 
         var requestOptions = {
             method: 'POST',
-            // mode: 'no-cors',
             headers: myHeaders,
             redirect: 'follow'
           };
-        fetch('https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=10')  // , requestOptions
+        
+        fetch('https://web.accountsdeck.com/ws/itemList_off?page=0&offset=10', requestOptions)
         .then(res => {
-            const total = res.headers.get('x-total-count');   
-            this.setState({"pageCount": Math.ceil(total/5)});
+            const total = res.headers.get('x-total-count');
+            this.setState({"pageCount": Math.ceil(total/10)});
             return res.json();
         }).then(responseData => {
-            console.log(responseData);
             this.setState({itemsList: responseData, itemListClone: responseData});
         });
     }
@@ -68,8 +68,7 @@ class RateList extends Component {
         this.setState({itemsList: filteredData});
     }
     handlePageClick = async (data) => {
-        debugger;
-        let currentPage = data.selected + 1 ;
+        let currentPage = data.selected;
         const pageData  = await this.fetchParts(currentPage);
         this.setState({itemsList: pageData, itemListClone: pageData});    
     }
@@ -91,8 +90,8 @@ class RateList extends Component {
                     </form>
                 </div>
                 <ReactPaginate
-                    previousLabel = {'previous'}
-                    nextLabel = {'next'}
+                    previousLabel = {'<'}
+                    nextLabel = {'>'}
                     breakLabel = {'...'}
                     pageCount = {this.state.pageCount}
                     marginPagesDisplayed={3}
@@ -115,17 +114,12 @@ class RateList extends Component {
                 </div>
                 {this.state.itemsList.map(item => {
                 return <Item onSelectItem={() => this.itemSelectedHandler(item)} 
-                        key={item.id}
-                        title={item.name}
-                        desc={item.body}
-                        location={item.email}
-                        rate={item.postId}
-                        // key={item.itemId} 
-                        // title={item.iName} 
-                        // desc={item.iDesc} 
-                        // location={item.comment}
-                        // rate={item.tranRate}
-                        ></Item>
+                        key={item.itemId} 
+                        title={item.iName} 
+                        desc={item.iDesc} 
+                        location={item.comment}
+                        rate={item.tranRate}
+                       ></Item>
                 })}
 
             </div>
