@@ -9,7 +9,7 @@ class Checkout extends Component {
   downloadPDF = (netAmount) => {
     const doc = new jsPDF({includeHiddenHtml: true});
     doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
-    doc.text("Sonalika Spare Parts - Invoice", 70, 10);
+    doc.text("Spare Parts - Invoice", 70, 10);
     doc.autoTable({ html: '.tbl1', theme:'grid' });    
     // var file = doc.output('blob');
     // var pdfData = doc.output('datauristring');
@@ -26,7 +26,7 @@ class Checkout extends Component {
     const fArray = [file];
     if (navigator.canShare && navigator.canShare({ files: fArray })) {
       navigator.share({
-        title: 'Sonalika Spare Parts',
+        title: 'Spare Parts',
         text: 'Invoice',
         files: fArray
         // url: element.href
