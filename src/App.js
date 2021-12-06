@@ -5,16 +5,22 @@ import Header from './component/Header/Header';
 // import Login from './component/Login/Login';
 // import OTP from './component/OTP/otp';
 import RateList from './component/RateList/RateList';
+import RateListView from './component/RateListView/RateListView';
 import Checkout from './component/Checkout/Checkout';
 import './App.css';
+import Paginate from './component/Paginator/Paginator';
 
 const App = () => {
+  const handlePageClick = (data) => {
+      console.log(data);
+  }
   return (
     <BrowserRouter>
         <div className="App">
           <Header/>
           {/* <Route path="/" exact component={Login}/> */}
           {/* <Route path="/otp" exact component={OTP}/> */}
+          
           <Route path='/' exact component={RateList}/>
           <Route path='/checkout' exact component={Checkout}/>
         </div>
