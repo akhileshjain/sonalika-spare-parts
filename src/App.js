@@ -11,9 +11,6 @@ import './App.css';
 import Paginate from './component/Paginator/Paginator';
 
 const App = () => {
-  const handlePageClick = (data) => {
-      console.log(data);
-  }
   return (
     <BrowserRouter>
         <div className="App">
