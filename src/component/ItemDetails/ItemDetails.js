@@ -66,14 +66,18 @@ const mapDispatchToProps = dispatch => {
     return {
         onAddToCart: (event, props) => {
             event.preventDefault();
-            let addedItem = {"rate": props.rate, "qty": event.target[1].value, "name": props.title};
-            dispatch(actionTypes.AddItemToCart(addedItem));         
+            if(event.target[1].value !== '0') {
+                let addedItem = {"rate": props.rate, "qty": event.target[1].value, "name": props.title};
+                dispatch(actionTypes.AddItemToCart(addedItem));         
+            }
             props.onCloseDialog();  
         },
         onCartCheckout: (event, props) => {
             event.preventDefault();
-            let addedItem = {"rate": props.rate, "qty": document.getElementsByClassName('item-details-popup-inputs')[1].value, "name": props.title};
-            dispatch(actionTypes.AddItemToCart(addedItem));         
+            if(document.getElementsByClassName('item-details-popup-inputs')[1].value !== '0') {
+                let addedItem = {"rate": props.rate, "qty": document.getElementsByClassName('item-details-popup-inputs')[1].value, "name": props.title};
+                dispatch(actionTypes.AddItemToCart(addedItem));         
+            }
             props.onCloseDialog();  
             props.history.push('/checkout');
         }

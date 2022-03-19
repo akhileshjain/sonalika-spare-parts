@@ -36,6 +36,7 @@ class Checkout extends Component {
   render() {
     // alert(navigator.canShare);
     let netAmount = 0;
+    let oCart = this.props.cart.filter(x => x.qty != 0);
     return(
       <div className="print-cart">
         <table className="tbl1">
@@ -45,7 +46,7 @@ class Checkout extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.cart.map(item => {
+              {oCart.map(item => {
               return <CartItemPdf name={item.name} 
                       rate={item.rate} qty={item.qty}>
                     </CartItemPdf>
@@ -61,6 +62,7 @@ class Checkout extends Component {
         {this.props.cart.map(item => {
             netAmount += item.rate * item.qty;
             return <CartItem name={item.name} 
+                    key={item.name}
                     rate={item.rate} qty={item.qty}>
                   </CartItem>
           })}
@@ -78,7 +80,6 @@ class Checkout extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state);
   return {
     cart : state.cart
   }
