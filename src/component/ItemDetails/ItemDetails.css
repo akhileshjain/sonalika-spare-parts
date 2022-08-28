@@ -44,3 +44,6 @@
     justify-content: center;
     font-weight: bold;
 }
+.item-details-hidden-location {
+    visibility: hidden;
+}

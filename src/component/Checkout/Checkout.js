@@ -42,13 +42,13 @@ class Checkout extends Component {
         <table className="tbl1">
             <thead>
               <tr>
-                <th>Item</th><th>Item Rate</th><th>Quantity</th><th>Amount</th>
+                <th>Item</th><th>Location</th><th>Item Rate</th><th>Quantity</th><th>Amount</th>
               </tr>
             </thead>
             <tbody>
               {oCart.map(item => {
               return <CartItemPdf name={item.name} 
-                      rate={item.rate} qty={item.qty}>
+                      rate={item.rate} qty={item.qty} loc={item.loc}>
                     </CartItemPdf>
             })}
             </tbody>
@@ -59,11 +59,15 @@ class Checkout extends Component {
           <div className="checkout-qty-col">Quantity</div>
           <div className="checkout-amount-col">Amount</div>
         </div>
-        {this.props.cart.map(item => {
+        {
+
+        this.props.cart.map(item => {
             netAmount += item.rate * item.qty;
             return <CartItem name={item.name} 
                     key={item.name}
-                    rate={item.rate} qty={item.qty}>
+                    rate={item.rate} 
+                    qty={item.qty}
+                    loc={item.loc}>
                   </CartItem>
           })}
           <div className="net-amount-box"><span>Total amount: Rs.</span>
@@ -80,6 +84,7 @@ class Checkout extends Component {
   }
 }
 const mapStateToProps = state => {
+  console.log(state.cart);
   return {
     cart : state.cart
   }

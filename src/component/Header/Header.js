@@ -4,7 +4,7 @@ import './Header.css';
 const header = () => {
     return (
         <div className="app-header">
-            <div>Spare Parts</div>
+            {/* <div>Spare Parts</div> */}
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import RateListView from '../RateListView/RateListView';
 import * as PartsService from '../../services/parts.service';
 import './RateList.css';
-import  Item  from '../Item/Item';
 import Modal from '../UI/Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import Paginate from '../Paginator/Paginator';
@@ -12,10 +11,12 @@ const RateList = () => {
     const [itemsList, setItemsList] = useState([]);
     const [show, setShow] = useState(false);
     const [selectedItemRate, setSelectedItemRate] = useState();
+    const [selectedLocation, setSelectedLocation] = useState();
     const [title, setTitle] = useState();
 
     const itemSelectedHandler = (selectedItem) => {
         setSelectedItemRate(selectedItem.tranRate);
+        setSelectedLocation(selectedItem.comment);
         setTitle(selectedItem.iName + ' (' + selectedItem.iDesc + ')');
         setShow(true);
     }
@@ -54,7 +55,7 @@ const RateList = () => {
         <div className="searchbar-box">
             {show ? 
             <Modal show={show} modalClosed={orderCancelledHandler}>
-                <ItemDetails onCloseDialog={() => orderCancelledHandler()} title={title} rate={selectedItemRate}></ItemDetails>
+                <ItemDetails onCloseDialog={() => orderCancelledHandler()} title={title} rate={selectedItemRate} loc={selectedLocation}></ItemDetails>
             </Modal> 
             : null}
             {/* <form className="ratelist-form" onSubmit={(event) => dynamicSearch(this, event)}> */}

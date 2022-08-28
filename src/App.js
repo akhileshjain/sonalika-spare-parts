@@ -5,10 +5,8 @@ import Header from './component/Header/Header';
 // import Login from './component/Login/Login';
 // import OTP from './component/OTP/otp';
 import RateList from './component/RateList/RateList';
-import RateListView from './component/RateListView/RateListView';
 import Checkout from './component/Checkout/Checkout';
 import './App.css';
-import Paginate from './component/Paginator/Paginator';
 
 const App = () => {
   return (

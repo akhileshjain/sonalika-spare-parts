@@ -39,6 +39,7 @@ class ItemDetails extends Component {
                         value={'Rs.'+ this.props.rate * this.state.qty}
                         />
                     </div>
+                    <div className="item-details-hidden-location">{this.props.loc? this.props.loc:'N/A'}</div>
                     {/* <div className="item-details-popup-line-box">
                         <label>Net Order Amount</label>
                         <input disabled className="item-details-popup-inputs"/>
@@ -67,7 +68,7 @@ const mapDispatchToProps = dispatch => {
         onAddToCart: (event, props) => {
             event.preventDefault();
             if(event.target[1].value !== '0') {
-                let addedItem = {"rate": props.rate, "qty": event.target[1].value, "name": props.title};
+                let addedItem = {"rate": props.rate, "qty": event.target[1].value, "name": props.title, "loc": props.loc};
                 dispatch(actionTypes.AddItemToCart(addedItem));         
             }
             props.onCloseDialog();  
@@ -75,7 +76,7 @@ const mapDispatchToProps = dispatch => {
         onCartCheckout: (event, props) => {
             event.preventDefault();
             if(document.getElementsByClassName('item-details-popup-inputs')[1].value !== '0') {
-                let addedItem = {"rate": props.rate, "qty": document.getElementsByClassName('item-details-popup-inputs')[1].value, "name": props.title};
+                let addedItem = {"rate": props.rate, "qty": document.getElementsByClassName('item-details-popup-inputs')[1].value, "name": props.title, "loc": props.loc};
                 dispatch(actionTypes.AddItemToCart(addedItem));         
             }
             props.onCloseDialog();  

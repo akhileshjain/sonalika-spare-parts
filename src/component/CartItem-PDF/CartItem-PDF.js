@@ -5,6 +5,7 @@ const cartItemPdf = (props) => {
     return (
     <tr>
         <td>{props.name}</td>
+        <td>{props.loc? props.loc:'N/A'}</td>
         <td>Rs. {props.rate}</td>
         <td>{props.qty}</td>
         <td>Rs. {props.rate * props.qty}</td>
